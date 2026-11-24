@@ -1,0 +1,19 @@
+name: CI-CD DevOps Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Construire l'image Docker
+        run: docker build -t monimage-devops:latest .
+
+      - name: Vérifier l'image créée
+        run: docker images
